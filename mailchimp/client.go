@@ -10,7 +10,6 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	"sync"
 	"time"
 )
 
@@ -39,7 +38,6 @@ type Client struct {
 	baseURL string
 	http    *http.Client
 	sem     chan struct{} // concurrency limiter (10 simultaneous connections)
-	mu      sync.Mutex
 }
 
 // NewClient creates a new Mailchimp API client.
@@ -146,7 +144,7 @@ func (c *Client) doRequest(ctx context.Context, method, path string, body []byte
 
 		// Parse error
 		apiErr := &APIError{StatusCode: resp.StatusCode}
-		json.Unmarshal(respBody, apiErr)
+		_ = json.Unmarshal(respBody, apiErr)
 		if apiErr.Title == "" {
 			apiErr.Title = http.StatusText(resp.StatusCode)
 		}
@@ -271,7 +269,7 @@ func (c *Client) FetchAll(ctx context.Context, path, itemsKey string) ([]json.Ra
 		var meta struct {
 			TotalItems int `json:"total_items"`
 		}
-		json.Unmarshal(raw, &meta)
+		_ = json.Unmarshal(raw, &meta)
 
 		if meta.TotalItems > 0 && len(allItems) >= meta.TotalItems {
 			break

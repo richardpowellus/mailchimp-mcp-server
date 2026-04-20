@@ -30,7 +30,7 @@ func ParseParams(raw json.RawMessage) Params {
 		Page     *int `json:"page"`
 		PageSize *int `json:"page_size"`
 	}
-	json.Unmarshal(raw, &p)
+	_ = json.Unmarshal(raw, &p)
 	params := Params{Page: 1}
 	if p.Page != nil && *p.Page > 0 {
 		params.Page = *p.Page

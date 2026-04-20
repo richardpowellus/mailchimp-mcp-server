@@ -191,5 +191,5 @@ func (s *Server) handleToolsCall(ctx context.Context, req *jsonRPCRequest) *json
 func writeResponse(w io.Writer, resp jsonRPCResponse) {
 	data, _ := json.Marshal(resp)
 	data = append(data, '\n')
-	w.Write(data)
+	_, _ = w.Write(data)
 }
