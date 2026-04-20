@@ -14,7 +14,7 @@ func RegisterAutomations(s mcp.ToolRegistrar, cfg *mailchimp.Config) {
 	// list_automations — GET /automations
 	s.RegisterTool(mcp.Tool{
 		Name:        "list_automations",
-		Description: "List all automations (classic automation workflows). GET /automations. Returns automation summaries with status, trigger, and email count.",
+		Description: "List classic automation workflows. GET /automations. NOTE: Customer Journey / multichannel automations are NOT returned here — they are campaigns. Use list_campaigns to find them. Returns automation summaries with status, trigger, and email count.",
 		InputSchema: mcp.InputSchema{
 			Type: "object",
 			Properties: mcp.MergeProps(map[string]mcp.PropertySchema{
