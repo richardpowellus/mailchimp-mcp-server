@@ -126,7 +126,7 @@ func (c *Client) doRequest(ctx context.Context, method, path string, body []byte
 		}
 
 		respBody, err := io.ReadAll(resp.Body)
-		resp.Body.Close()
+		_ = resp.Body.Close()
 		if err != nil {
 			return nil, fmt.Errorf("reading response: %w", err)
 		}
