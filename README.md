@@ -3,6 +3,7 @@
 [![Go](https://img.shields.io/badge/Go-1.23+-00ADD8?logo=go)](https://go.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![MCP](https://img.shields.io/badge/MCP-Compatible-green)](https://modelcontextprotocol.io)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-yellow?logo=buy-me-a-coffee&logoColor=white)](https://buymeacoffee.com/letri)
 
 A Go [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server providing full read+write access to the [Mailchimp Marketing API v3](https://mailchimp.com/developer/marketing/api/) — **279 tools** covering every endpoint.
 
@@ -829,6 +830,12 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for gui
 - Code style requirements
 - Adding new tools
 - Pull request process
+
+## Support
+
+If you find this project useful, consider buying me a coffee:
+
+<a href="https://buymeacoffee.com/letri" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="217" height="60"></a>
 
 ## License
 
