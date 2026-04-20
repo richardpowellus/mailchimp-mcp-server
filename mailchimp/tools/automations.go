@@ -98,7 +98,7 @@ func RegisterAutomations(s mcp.ToolRegistrar, cfg *mailchimp.Config) {
 	// start_automation — POST /automations/{workflow_id}/actions/start-all-emails
 	s.RegisterTool(mcp.Tool{
 		Name:        "start_automation",
-		Description: "Start all emails in an automation workflow. POST /automations/{workflow_id}/actions/start-all-emails.",
+		Description: "Start all emails in an automation workflow. POST /automations/{workflow_id}/actions/start-all-emails. NOTE: If this returns a generic error, check that the automation has a list/audience set, all emails have content, and the automation is in a startable state. The Mailchimp API does not specify which prerequisite is missing.",
 		InputSchema: mcp.InputSchema{
 			Type: "object",
 			Properties: map[string]mcp.PropertySchema{
@@ -240,7 +240,7 @@ func RegisterAutomations(s mcp.ToolRegistrar, cfg *mailchimp.Config) {
 	// update_automation_email — PATCH /automations/{workflow_id}/emails/{email_id}
 	s.RegisterTool(mcp.Tool{
 		Name:        "update_automation_email",
-		Description: "Update an automation email. PATCH /automations/{workflow_id}/emails/{email_id}. Body can include settings, delay, etc.",
+		Description: "Update an automation email's settings. PATCH /automations/{workflow_id}/emails/{email_id}. Body can include settings (subject_line, from_name, reply_to) and delay (type, direction, action, amount, full_description). NOTE: template_id and drag_and_drop fields are silently ignored by the Mailchimp API — use set_automation_email_content or set_campaign_content to change email content instead.",
 		InputSchema: mcp.InputSchema{
 			Type: "object",
 			Properties: map[string]mcp.PropertySchema{
@@ -300,7 +300,7 @@ func RegisterAutomations(s mcp.ToolRegistrar, cfg *mailchimp.Config) {
 	// get_automation_email_content — GET /automations/{workflow_id}/emails/{email_id}/content
 	s.RegisterTool(mcp.Tool{
 		Name:        "get_automation_email_content",
-		Description: "Get the HTML content of an automation email. GET /automations/{workflow_id}/emails/{email_id}/content.",
+		Description: "Get the HTML content of a classic automation email. GET /automations/{workflow_id}/emails/{email_id}/content. NOTE: Returns 404 for multichannel/Customer Journey emails. For those, use get_campaign_content with the email's campaign_id instead.",
 		InputSchema: mcp.InputSchema{
 			Type: "object",
 			Properties: map[string]mcp.PropertySchema{
@@ -329,7 +329,7 @@ func RegisterAutomations(s mcp.ToolRegistrar, cfg *mailchimp.Config) {
 	// set_automation_email_content — PUT /automations/{workflow_id}/emails/{email_id}/content
 	s.RegisterTool(mcp.Tool{
 		Name:        "set_automation_email_content",
-		Description: "Set the content of an automation email. PUT /automations/{workflow_id}/emails/{email_id}/content. Body: html, plain_text.",
+		Description: "Set the content of a classic automation email. PUT /automations/{workflow_id}/emails/{email_id}/content. Body: html, plain_text. NOTE: Returns 404 for multichannel/Customer Journey emails. For those, use set_campaign_content with the email's campaign_id instead.",
 		InputSchema: mcp.InputSchema{
 			Type: "object",
 			Properties: map[string]mcp.PropertySchema{
