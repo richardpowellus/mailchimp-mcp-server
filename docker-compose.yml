@@ -1,0 +1,6 @@
+services:
+  mailchimp-mcp:
+    build: .
+    environment:
+      - MAILCHIMP_API_KEY=${MAILCHIMP_API_KEY}
+    stdin_open: true

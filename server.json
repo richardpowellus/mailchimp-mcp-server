@@ -1,0 +1,20 @@
+{
+  "name": "mailchimp-mcp-server",
+  "description": "A Go MCP server for the Mailchimp Marketing API v3 — 280+ tools for campaigns, automations, audiences, reports, e-commerce, and more.",
+  "version": "0.1.0",
+  "author": "Richard Powell",
+  "license": "MIT",
+  "repository": "https://github.com/richardpowellus/mailchimp-mcp-server",
+  "tools_count": 280,
+  "categories": ["email-marketing", "marketing-automation", "e-commerce"],
+  "install": {
+    "go": "go install github.com/richardpowellus/mailchimp-mcp-server/cmd/mailchimp-mcp-server@latest",
+    "docker": "docker pull ghcr.io/richardpowellus/mailchimp-mcp-server"
+  },
+  "config": {
+    "command": "mailchimp-mcp-server",
+    "env": {
+      "MAILCHIMP_API_KEY": "your-api-key-us2"
+    }
+  }
+}
